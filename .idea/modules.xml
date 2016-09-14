@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/youku.iml" filepath="$PROJECT_DIR$/youku.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-jobinfo/youku-jobinfo.iml" filepath="$PROJECT_DIR$/youku-jobinfo/youku-jobinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-jobinfo-api/youku-jobinfo-api.iml" filepath="$PROJECT_DIR$/youku-jobinfo-api/youku-jobinfo-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-search/youku-search.iml" filepath="$PROJECT_DIR$/youku-search/youku-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-search-api/youku-search-api.iml" filepath="$PROJECT_DIR$/youku-search-api/youku-search-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-user/youku-user.iml" filepath="$PROJECT_DIR$/youku-user/youku-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-user-api/youku-user-api.iml" filepath="$PROJECT_DIR$/youku-user-api/youku-user-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-web/youku-web.iml" filepath="$PROJECT_DIR$/youku-web/youku-web.iml" />
+    </modules>
+  </component>
+</project>
