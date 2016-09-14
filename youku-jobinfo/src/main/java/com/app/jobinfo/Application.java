@@ -1,5 +1,7 @@
 package com.app.jobinfo;
 
+import com.app.user.module.User;
+import com.app.user.service.UserReadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,11 +14,15 @@ import java.util.concurrent.CountDownLatch;
  */
 @Slf4j
 public class Application {
+
+
     public static void main(String[] args) throws InterruptedException {
-        
         final ClassPathXmlApplicationContext ac =
                 new ClassPathXmlApplicationContext("spring/youku-jobinfo-dubbo-consumer.xml");
         ac.start();
+        UserReadService userReadService = (UserReadService) ac.getBean("userReadService");
+        User user = userReadService.findUserById();
+        log.info(user.getName());
         log.info("Jobinfo Service started successfully");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {

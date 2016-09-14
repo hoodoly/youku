@@ -15,8 +15,7 @@ import java.util.concurrent.CountDownLatch;
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        final ClassPathXmlApplicationContext ac =
-                new ClassPathXmlApplicationContext("spring/youku-user-dubbo-provider.xml");
+        final ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring/youku-user-dubbo-provider.xml");
         ac.start();
         log.info("User Service started successfully");
         Runtime.getRuntime().addShutdownHook(new Thread() {

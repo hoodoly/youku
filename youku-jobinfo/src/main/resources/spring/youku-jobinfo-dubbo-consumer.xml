@@ -7,15 +7,17 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <context:component-scan base-package="com.app"/>
 
-    <dubbo:registry id="central" address="zookeeper://127.0.0.1:2181" protocol="zookeeper"/>
 
     <!-- 提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的 -->
-    <dubbo:application name="dubbo_consumer"></dubbo:application>
+    <dubbo:application name="jobinfo"></dubbo:application>
+
     <!-- 使用zookeeper注册中心暴露服务地址 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false" subscribe="false" register=""></dubbo:registry>
+    <dubbo:registry id="central" address="zookeeper://127.0.0.1:2181" protocol="zookeeper"/>
+
+    <dubbo:consumer timeout="5000"/>
 
     <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.user.service.UserReadService" id="userReadService"/>
 
+    <context:component-scan base-package="com.app"/>
 </beans>
