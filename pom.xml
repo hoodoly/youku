@@ -15,6 +15,7 @@
         <module>youku-user-api</module>
         <module>youku-search</module>
         <module>youku-search-api</module>
+        <module>youku-web</module>
 
     </modules>
 

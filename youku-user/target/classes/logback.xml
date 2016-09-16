@@ -9,9 +9,9 @@
         </encoder>
     </appender>
 
-    <logger name="com.app.jobinfo" level="INFO" additivity="true">
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <!--<logger name="com.app.user" level="DEBUG" additivity="true">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />

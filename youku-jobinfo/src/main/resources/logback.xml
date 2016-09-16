@@ -35,14 +35,14 @@
         </encoder>
     </appender>
 
-    <logger name="com.app" level="INFO" additivity="true">
-        <appender-ref ref="STDOUT"/>
-    </logger>
+    <!--<logger name="com.app.jobinfo" level="INFO" additivity="true">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
 
 
     <!-- Strictly speaking, the level attribute is not necessary since -->
     <!-- the level of the root level is set to DEBUG by default.       -->
-    <root level="debug">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 

@@ -28,6 +28,8 @@
         <module name="youku-search-api" />
         <module name="youku-user" />
         <module name="youku-user-api" />
+        <module name="youku-web" />
+        <module name="youku-web-front" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +40,8 @@
       <module name="youku-search-api" target="1.5" />
       <module name="youku-user" target="1.5" />
       <module name="youku-user-api" target="1.5" />
+      <module name="youku-web" target="1.5" />
+      <module name="youku-web-front" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
