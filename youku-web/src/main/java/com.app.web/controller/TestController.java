@@ -1,14 +1,20 @@
 package com.app.web.controller;
 
 
+import com.app.jobinfo.module.Jobinfo;
+import com.app.search.service.SearchJobinfoReadService;
+import com.app.search.service.SearchJobinfoWriteService;
 import com.app.user.module.User;
 import com.app.user.service.UserReadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 /**
@@ -18,16 +24,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @Slf4j
-@RequestMapping(value = "/api")
 public class TestController {
 
     @Autowired
     UserReadService userReadService;
 
-    @RequestMapping(value = "/test")
+    @Autowired
+    SearchJobinfoWriteService searchJobinfoWriteService;
+
+    @Autowired
+    SearchJobinfoReadService searchJobinfoReadService;
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
-    public User findUser(@RequestParam String userName){
+    public User findUser(){
         User user = userReadService.findUserById();
         return user;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Jobinfo> getJobinfo(@RequestParam String keyWord){
+        searchJobinfoWriteService.indicesJobInfo();
+
+        List<Jobinfo> jobinfos = searchJobinfoReadService.search(keyWord);
+        return jobinfos;
     }
 }

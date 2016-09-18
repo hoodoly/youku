@@ -8,7 +8,7 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    
+
     <!-- 提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的 -->
     <dubbo:application name="web"></dubbo:application>
 
@@ -18,6 +18,7 @@
     <dubbo:consumer timeout="5000"/>
 
     <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.user.service.UserReadService" id="userReadService"/>
+    <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.search.service.SearchJobinfoWriteService" id="searchJobinfoWriteService"/>
+    <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.search.service.SearchJobinfoReadService" id="searchJobinfoReadService"/>
 
-    <context:component-scan base-package="com.app"/>
 </beans>

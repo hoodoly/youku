@@ -33,6 +33,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="yoku" target="1.5" />
       <module name="youku" target="1.5" />
       <module name="youku-jobinfo" target="1.5" />
       <module name="youku-jobinfo-api" target="1.5" />

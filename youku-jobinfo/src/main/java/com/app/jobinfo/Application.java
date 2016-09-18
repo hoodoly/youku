@@ -17,8 +17,7 @@ public class Application {
 
 
     public static void main(String[] args) throws InterruptedException {
-        final ClassPathXmlApplicationContext ac =
-                new ClassPathXmlApplicationContext("spring/youku-jobinfo-dubbo-consumer.xml");
+        final ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-config.xml");
         ac.start();
         UserReadService userReadService = (UserReadService) ac.getBean("userReadService");
         User user = userReadService.findUserById();

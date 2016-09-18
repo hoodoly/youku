@@ -1,6 +1,10 @@
 package com.app.jobinfo.service;
 
+import com.app.jobinfo.module.Jobinfo;
 import com.app.user.module.User;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Desc:
@@ -9,5 +13,11 @@ import com.app.user.module.User;
  */
 public interface JobinfoReadService {
     User getUser();
+
+
+    List<Jobinfo> getJobinfosByParam(Map<String, Object> param);
+
+
+
 
 }
