@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2015 杭州端点网络科技有限公司
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Jobinfo">
+    <resultMap id="JobinfoMap" type="Jobinfo">
+        <result property="id" column="id"/>
+        <result property="companyId" column="company_id"/>
+        <result property="companyName" column="company_name"/>
+        <result property="jobCategory" column="job_category"/>
+        <result property="jobName" column="job_name"/>
+        <result property="city" column="city"/>
+        <result property="salaryHigh" column="salary_high"/>
+        <result property="salaryLow" column="salary_low"/>
+        <result property="status" column="status"/>
+        <result property="experience" column="experience"/>
+        <result property="education" column="education"/>
+        <result property="content" column="content"/>
+        <result property="detail" column="detail"/>
+        <result property="address" column="address"/>
+        <result property="extra" column="extra"/>
+        <result property="createAt" column="create_at"/>
+        <result property="updateAt" column="update_at"/>
+    </resultMap>
+
+    <sql id="columns">
+        company_id, company_name, job_category, job_name, city, salary_high, salary_low, status, experience, education, content,
+        detail, address, extra, create_at, update_at
+    </sql>
+
+    <sql id="table">
+        job_info
+    </sql>
+
+    <insert id="create" parameterType="Jobinfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO <include refid="table"/>
+        (<include refid="columns"/>)
+        VALUES(#{companyId}, #{companyName}, #{jobCategory}, #{jobName}, #{city}, #{salaryHigh}, #{salaryLow}, #{status}, #{experience},
+        #{education}, #{content}, #{detail}, #{address}, #{extra}, #{createAt}, now())
+    </insert>
+
+    <select id="list" parameterType="map" resultMap="JobinfoMap">
+        select id,
+        <include refid="columns"/>
+        from <include refid="table"/>
+        <where>
+            <if test="companyId != null"> and company_id = #{companyId}</if>
+            <if test="companyName != null"> and company_name = #{companyName}</if>
+            <if test="jobCategory != null">and job_category = #{jobCategory},</if>
+            <if test="jobName != null"> and job_name = #{jobName}</if>
+            <if test="city != null"> and city = #{city}</if>
+            <if test="salaryHigh != null">and salary_high = #{salaryHigh},</if>
+            <if test="salaryLow != null"> and salary_low = #{salaryLow}</if>
+            <if test="status != null"> and status = #{status}</if>
+            <if test="experience != null">and experience = #{experience},</if>
+            <if test="education != null"> and education = #{education}</if>
+            <if test="content != null"> and content = #{content}</if>
+            <if test="detail != null">and detail = #{detail},</if>
+            <if test="address != null"> and address = #{address}</if>
+            <if test="extra != null"> and extra = #{extra}</if>
+            <if test="createAt != null">and create_at = #{createAt},</if>
+        </where>
+    </select>
+
+</mapper>

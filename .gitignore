@@ -1,0 +1,20 @@
+# Created by .gitignore support plugin (hsz.mobi)
+*.jar
+*.war
+*.class
+.settings/
+.classpath
+.project
+.metadata/
+.idea/
+.mine/
+logs/
+*.rdb
+*.log
+*.gz
+*apidocs/
+*.versionsBackup
+*.perm
+flyway.properties
+_book/
+**/rebel.xml
