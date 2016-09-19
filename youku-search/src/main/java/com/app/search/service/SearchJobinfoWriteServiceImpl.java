@@ -49,7 +49,6 @@ public class SearchJobinfoWriteServiceImpl implements SearchJobinfoWriteService{
                 ObjectMapper mapper = new ObjectMapper();
                 String jsonValue = mapper.writeValueAsString(jobinfo);
                 IndexResponse indexResponse = client.prepareIndex("lagou", "jobInfo", jobinfo.getId().toString()).setSource(jsonValue).execute().actionGet();
-                log.info(indexResponse.getId());
             }
         }catch (Exception e){
             e.printStackTrace();

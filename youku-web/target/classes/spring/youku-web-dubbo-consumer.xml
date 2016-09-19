@@ -20,5 +20,6 @@
     <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.user.service.UserReadService" id="userReadService"/>
     <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.search.service.SearchJobinfoWriteService" id="searchJobinfoWriteService"/>
     <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.search.service.SearchJobinfoReadService" id="searchJobinfoReadService"/>
+    <dubbo:reference registry="central" retries="0" timeout="5000" interface="com.app.jobinfo.service.JobinfoReadService" id="jobinfoReadService"/>
 
 </beans>

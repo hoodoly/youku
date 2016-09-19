@@ -2,6 +2,7 @@ package com.app.web.controller;
 
 
 import com.app.jobinfo.module.Jobinfo;
+import com.app.jobinfo.service.JobinfoReadService;
 import com.app.search.service.SearchJobinfoReadService;
 import com.app.search.service.SearchJobinfoWriteService;
 import com.app.user.module.User;
@@ -35,6 +36,9 @@ public class TestController {
     @Autowired
     SearchJobinfoReadService searchJobinfoReadService;
 
+    @Autowired
+    JobinfoReadService jobinfoReadService;
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
     public User findUser(){
@@ -44,10 +48,18 @@ public class TestController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public List<Jobinfo> getJobinfo(@RequestParam String keyWord){
+    public List<Jobinfo> getJobinfos(@RequestParam(required = false) String keyWord){
         searchJobinfoWriteService.indicesJobInfo();
 
         List<Jobinfo> jobinfos = searchJobinfoReadService.search(keyWord);
         return jobinfos;
+    }
+
+    @RequestMapping(value = "/api", method = RequestMethod.GET)
+    @ResponseBody
+    public Jobinfo getJobinfo(@RequestParam(required = false) Long id){
+
+        Jobinfo jobinfo = jobinfoReadService.getJobinfoById(id);
+        return jobinfo;
     }
 }

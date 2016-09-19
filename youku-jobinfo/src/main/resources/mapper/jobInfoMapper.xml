@@ -28,7 +28,7 @@
     </resultMap>
 
     <sql id="columns">
-        company_id, company_name, job_category, job_name, city, salary_high, salary_low, status, experience, education, content,
+        id, company_id, company_name, job_category, job_name, city, salary_high, salary_low, status, experience, education, content,
         detail, address, extra, create_at, update_at
     </sql>
 
@@ -42,6 +42,12 @@
         VALUES(#{companyId}, #{companyName}, #{jobCategory}, #{jobName}, #{city}, #{salaryHigh}, #{salaryLow}, #{status}, #{experience},
         #{education}, #{content}, #{detail}, #{address}, #{extra}, #{createAt}, now())
     </insert>
+
+    <select id="load" parameterType="long" resultMap="JobinfoMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE id = #{id} LIMIT 1
+    </select>
 
     <select id="list" parameterType="map" resultMap="JobinfoMap">
         select id,

@@ -17,7 +17,7 @@ public interface JobinfoReadService {
 
     List<Jobinfo> getJobinfosByParam(Map<String, Object> param);
 
-
+    Jobinfo getJobinfoById(Long jobinfoId);
 
 
 }
