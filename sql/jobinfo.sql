@@ -1,11 +1,11 @@
 --存储过程--
-DELIMITER $$;
+DELIMITER $$
 
 CREATE PROCEDURE procedure_apply_success (IN activity_id bigint, IN phone VARCHAR(20), out r_result int)
   BEGIN
     DECLARE insert_count int DEFAULT 0;
     START TRANSACTION;
-    INSERT ignore INTO apply_success (activity_id, phone, activity_name, create_at) VALUE (activity_id, phone, null, now());
+    INSERT ignore INTO activity_apply (activity_id, phone, activity_name, create_at) VALUE (activity_id, phone, null, now());
     SELECT ROW_COUNT() INTO insert_count;
     IF (insert_count=0) THEN
       ROLLBACK ;

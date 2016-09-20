@@ -17,6 +17,8 @@
         <module>youku-search</module>
         <module>youku-search-api</module>
         <module>youku-web</module>
+        <module>youku-activity</module>
+        <module>youku-activity-api</module>
     </modules>
 
     <dependencies>

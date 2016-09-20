@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/youku.iml" filepath="$PROJECT_DIR$/youku.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-activity/youku-activity.iml" filepath="$PROJECT_DIR$/youku-activity/youku-activity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youku-activity-api/youku-activity-api.iml" filepath="$PROJECT_DIR$/youku-activity-api/youku-activity-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/youku-jobinfo/youku-jobinfo.iml" filepath="$PROJECT_DIR$/youku-jobinfo/youku-jobinfo.iml" />
       <module fileurl="file://$PROJECT_DIR$/youku-jobinfo-api/youku-jobinfo-api.iml" filepath="$PROJECT_DIR$/youku-jobinfo-api/youku-jobinfo-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/youku-search/youku-search.iml" filepath="$PROJECT_DIR$/youku-search/youku-search.iml" />

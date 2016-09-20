@@ -60,6 +60,7 @@ public class TestController {
     public Jobinfo getJobinfo(@RequestParam(required = false) Long id){
 
         Jobinfo jobinfo = jobinfoReadService.getJobinfoById(id);
+        log.info(jobinfo.getId().toString());
         return jobinfo;
     }
 }
