@@ -11,6 +11,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/youku-common/pom.xml" />
         <option value="$PROJECT_DIR$/youku-jobinfo/pom.xml" />
         <option value="$PROJECT_DIR$/youku-user-api/pom.xml" />
       </set>

@@ -1,4 +1,4 @@
-package com.app.web.controller;
+package com.app.web.contorller;
 
 
 import com.app.jobinfo.module.Jobinfo;
@@ -7,6 +7,9 @@ import com.app.search.service.SearchJobinfoReadService;
 import com.app.search.service.SearchJobinfoWriteService;
 import com.app.user.module.User;
 import com.app.user.service.UserReadService;
+import com.app.web.dto.SessionDto;
+import com.app.web.utils.SessionUtil;
+import com.app.web.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -39,19 +43,27 @@ public class TestController {
     @Autowired
     JobinfoReadService jobinfoReadService;
 
+    @Autowired
+    SessionUtil sessionUtil;
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
     public User findUser(){
-        User user = userReadService.findUserById();
+        User user = userReadService.findUserById(1L);
         return user;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
-    public List<Jobinfo> getJobinfos(@RequestParam(required = false) String keyWord){
+    public List<Jobinfo> getJobinfos(@RequestParam(required = false) String keyWord, HttpServletRequest request){
         searchJobinfoWriteService.indicesJobInfo();
 
         List<Jobinfo> jobinfos = searchJobinfoReadService.search(keyWord);
+        String sessionId = request.getSession().getId();
+        SessionDto Session = sessionUtil.getSession(request.getSession().getId());
+        log.info(Session.getPhone());
+
+        log.info(UserUtils.getCurrentUser().getUsername());
         return jobinfos;
     }
 

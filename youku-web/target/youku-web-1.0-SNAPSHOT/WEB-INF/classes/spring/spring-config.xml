@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:p="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的 -->
+    <dubbo:application name="activity" />
+
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry id="central" address="zookeeper://127.0.0.1:2181" protocol="zookeeper"/>
+
+    <dubbo:protocol name="dubbo" port="-1"  host="127.0.0.1" serialization="nativejava" threads="100" heartbeat="10000"/>
+
+    <context:property-placeholder location="classpath:app.properties"/>
+
+    <import resource="youku-web-dubbo-consumer.xml" />
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxTotal}" />
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
+    </bean>
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}" type="int"/>
+    </bean>
+
+</beans>

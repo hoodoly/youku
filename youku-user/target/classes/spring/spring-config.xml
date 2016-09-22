@@ -25,7 +25,33 @@
 
     <dubbo:protocol name="dubbo" port="-1"  host="127.0.0.1" serialization="nativejava" threads="100" heartbeat="10000"/>
 
+    <import resource="youku-user-dubbo-provider.xml"/>
 
     <context:property-placeholder location="classpath:app.properties"/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="anywhere"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://192.168.227.128:3306/lagou?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true" />
+        <property name="maxActive" value="30"/>
+        <property name="initialSize" value="10"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:/spring/mybatis-config.xml" />
+    </bean>
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxTotal}" />
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
+    </bean>
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}" type="int"/>
+    </bean>
 
 </beans>

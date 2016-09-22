@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="youku-activity" />
         <module name="youku-activity-api" />
+        <module name="youku-common" />
         <module name="youku-jobinfo" />
         <module name="youku-jobinfo-api" />
         <module name="youku-search" />
@@ -33,12 +34,21 @@
         <module name="youku-web" />
         <module name="youku-web-front" />
       </profile>
+      <profile default="false" name="Annotation profile for common" enabled="true">
+        <sourceOutputDir name="../common/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../common/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="common" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="1.5" />
       <module name="yoku" target="1.5" />
       <module name="youku" target="1.5" />
       <module name="youku-activity" target="1.5" />
       <module name="youku-activity-api" target="1.5" />
+      <module name="youku-common" target="1.5" />
       <module name="youku-jobinfo" target="1.5" />
       <module name="youku-jobinfo-api" target="1.5" />
       <module name="youku-search" target="1.5" />

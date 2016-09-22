@@ -16,6 +16,13 @@
     <orderEntry type="module" module-name="youku-jobinfo-api" />
     <orderEntry type="module" module-name="youku-search-api" />
     <orderEntry type="module" module-name="youku-activity-api" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-server:8.1.14.v20131031" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.14.v20131031" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:8.1.14.v20131031" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:8.1.14.v20131031" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-util:8.1.14.v20131031" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.27" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.3" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:1.1.1" level="project" />

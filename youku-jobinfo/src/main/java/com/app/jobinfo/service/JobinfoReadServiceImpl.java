@@ -3,7 +3,6 @@ package com.app.jobinfo.service;
 import com.app.jobinfo.dao.JobinfoDao;
 import com.app.jobinfo.dao.rediesDao.JobinfoRedisDao;
 import com.app.jobinfo.module.Jobinfo;
-import com.app.user.module.User;
 import com.app.user.service.UserReadService;
 import io.terminus.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +30,6 @@ public class JobinfoReadServiceImpl implements JobinfoReadService {
     @Autowired
     JobinfoRedisDao jobinfoRedisDao;
 
-    @Override
-    public User getUser() {
-        User user = userReadService.findUserById();
-        log.info(user.getName());
-        return user;
-    }
 
     @Override
     public List<Jobinfo> getJobinfosByParam(Map<String, Object> param) {

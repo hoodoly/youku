@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2015 杭州端点网络科技有限公司
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+    <resultMap id="UserMap" type="User">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="type" column="type"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <sql id="columns">
+        id, username, password, phone, type, email
+    </sql>
+
+    <sql id="table">
+        user
+    </sql>
+
+    <insert id="create" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO <include refid="table"/>
+        (<include refid="columns"/>)
+        VALUES(#{userName}, #{passWord})
+    </insert>
+
+    <select id="load" parameterType="long" resultMap="UserMap" >
+        SELECT <include refid="columns" />
+        FROM <include refid="table" />
+        WHERE id = #{id} LIMIT 1
+    </select>
+
+    <select id="queryByParams" parameterType="map" resultMap="UserMap">
+        select <include refid="columns"/> from <include refid="table"/>
+        <where>
+            <if test="userId != null"> and id = #{userId}</if>
+            <if test="username != null">and username = #{username},</if>
+            <if test="password != null"> and password = #{password}</if>
+            <if test="phone != null"> and phone = #{phone}</if>
+            <if test="email != null">and email = #{email},</if>
+            <if test="type != null"> and type = #{type}</if>
+        </where>
+    </select>
+
+</mapper>

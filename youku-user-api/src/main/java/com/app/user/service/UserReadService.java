@@ -10,6 +10,7 @@ import com.app.user.module.User;
  */
 public interface UserReadService {
 
-    User findUserById();
+    User findUserById(Long userId);
 
+    User findUserByParam(String phone, String password);
 }

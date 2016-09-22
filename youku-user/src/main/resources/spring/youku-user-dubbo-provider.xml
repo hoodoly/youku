@@ -10,18 +10,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<import resource="spring-config.xml"/>-->
 
-    <context:component-scan base-package="com.app.user"/>
-    <!-- 提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的 -->
-    <dubbo:application name="user" />
 
-    <!-- 使用zookeeper注册中心暴露服务地址 -->
-    <dubbo:registry id="central" address="zookeeper://127.0.0.1:2181" protocol="zookeeper"/>
-
-    <dubbo:protocol name="dubbo" port="-1"  host="127.0.0.1" serialization="nativejava" threads="100" heartbeat="10000"/>
-
-    <!-- 要暴露的服务接口 -->
     <dubbo:service registry="central" retries="0" interface="com.app.user.service.UserReadService" ref="userReadServiceImpl" />
 
 </beans>

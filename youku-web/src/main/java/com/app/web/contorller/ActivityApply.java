@@ -1,4 +1,4 @@
-package com.app.web.controller.activity;
+package com.app.web.contorller;
 
 import com.app.activity.service.ActivityApplyWriteService;
 import org.springframework.beans.factory.annotation.Autowired;
