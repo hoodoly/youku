@@ -22,6 +22,7 @@ public class ActivityApplyWriteServiceImpl implements ActivityApplyWriteService 
     ActivityApplyDao activityApplyDao;
 
     public Boolean applyActivity(Long activityId, String phone) {
+
         Map<String, Object> param = Maps.newHashMap();
         param.put("activityId", 1);
         param.put("phone", phone);

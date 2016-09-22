@@ -2,6 +2,8 @@ package com.app.web.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * Desc:
  * Author: <a href="xiahj@terminus.io">xiahj</a>
@@ -13,4 +15,6 @@ public class SessionDto {
     private Long userId;
     private String username;
     private String phone;
+    private Boolean isValid;
+    private Date expiredTime;
 }

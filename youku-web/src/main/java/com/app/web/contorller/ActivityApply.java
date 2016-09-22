@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Desc:
- * Author: <a href="xiahj@terminus.io">夏鸿杰</a>
+ * Author: <a href="xiahj@terminus.io">xiahj</a>
  * Date: 16/9/20
  */
 @Controller

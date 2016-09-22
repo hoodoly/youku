@@ -34,7 +34,7 @@ public final class SessionUtil {
     public void putSession(SessionDto session){
         RuntimeSchema<SessionDto> schema = RuntimeSchema.createFrom(SessionDto.class);
         LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
-        jedisPool.getResource().setex(session.getSessionId().getBytes(), 60*60, ProtostuffIOUtil.toByteArray(session, schema, buffer));
+        jedisPool.getResource().setex(session.getSessionId().getBytes(), 30*60, ProtostuffIOUtil.toByteArray(session, schema, buffer));
 
     }
 }

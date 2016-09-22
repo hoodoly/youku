@@ -7,7 +7,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Desc:
- * Author: <a href="xiahj@terminus.io">夏鸿杰</a>
+ * Author: <a href="xiahj@terminus.io">xiahj</a>
  * Date: 16/9/12
  */
 @Slf4j
