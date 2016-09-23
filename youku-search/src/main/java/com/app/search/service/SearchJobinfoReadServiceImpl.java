@@ -32,7 +32,7 @@ public class SearchJobinfoReadServiceImpl implements SearchJobinfoReadService{
                     //.setQuery(QueryBuilders.matchQuery("city", "杭州"))
                     //.setPostFilter(FilterBuilders.rangeFilter("age").from(12).to(18))   // Filter
                     .setQuery(QueryBuilders.boolQuery().should(QueryBuilders.multiMatchQuery(keyWord, "jobName")).should(QueryBuilders.multiMatchQuery(keyWord, "city")))
-                    .setFrom(0).setSize(5).setExplain(true)                          // page
+                    .setFrom(0).setSize(10).setExplain(true)   // page
                     .execute()
                     .actionGet();
 

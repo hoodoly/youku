@@ -8,6 +8,8 @@ import com.app.search.service.SearchJobinfoWriteService;
 import com.app.user.module.User;
 import com.app.user.service.UserReadService;
 import com.app.web.dto.SessionDto;
+import com.app.web.evevt.JobinfoDispatcher;
+import com.app.web.evevt.JobinfoEvent;
 import com.app.web.utils.SessionUtil;
 import com.app.web.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +48,11 @@ public class TestController {
     @Autowired
     SessionUtil sessionUtil;
 
+    @Autowired
+    JobinfoDispatcher jobinfoDispatcher;
+
+
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
     public User findUser(){
@@ -72,6 +79,8 @@ public class TestController {
     public Jobinfo getJobinfo(@RequestParam(required = false) Long id){
 
         Jobinfo jobinfo = jobinfoReadService.getJobinfoById(id);
+        JobinfoEvent event = new JobinfoEvent(jobinfo);
+        jobinfoDispatcher.publich(event);
         log.info(jobinfo.getId().toString());
         return jobinfo;
     }
