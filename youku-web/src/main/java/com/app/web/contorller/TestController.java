@@ -11,7 +11,7 @@ import com.app.web.dto.SessionDto;
 import com.app.web.evevt.JobinfoDispatcher;
 import com.app.web.evevt.JobinfoEvent;
 import com.app.web.utils.SessionUtil;
-import com.app.web.utils.UserUtils;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,12 +57,14 @@ public class TestController {
     @ResponseBody
     public User findUser(){
         User user = userReadService.findUserById(1L);
+        List<Long> ids = Lists.newArrayList(1L, 3L);
+
+        List<User> users = userReadService.loads(ids);
         return user;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Jobinfo> getJobinfos(@RequestParam(required = false) String keyWord, HttpServletRequest request){
+    public String getJobinfos(@RequestParam(required = false) String keyWord, HttpServletRequest request){
         searchJobinfoWriteService.indicesJobInfo();
 
         List<Jobinfo> jobinfos = searchJobinfoReadService.search(keyWord);
@@ -70,9 +72,10 @@ public class TestController {
         SessionDto Session = sessionUtil.getSession(request.getSession().getId());
         log.info(Session.getPhone());
 
-        log.info(UserUtils.getCurrentUser().getUsername());
-        return jobinfos;
+        //log.info(UserUtils.getCurrentUser().getUsername());
+        return "index";
     }
+
 
     @RequestMapping(value = "/api", method = RequestMethod.GET)
     @ResponseBody

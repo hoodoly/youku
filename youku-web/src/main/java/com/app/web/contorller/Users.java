@@ -7,6 +7,7 @@ import com.app.web.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,21 +30,25 @@ public class Users {
     @Autowired
     SessionUtil sessionUtil;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    public Boolean login(@RequestParam(value = "phone") String phone, @RequestParam(value = "password") String password,
+    public String login(@RequestParam(value = "phone") String phone,
+                         @RequestParam(value = "password") String password,
+                         @RequestParam(value = "target", required = false) String target,
                          HttpServletRequest request, HttpServletResponse response){
-
 
         User user = userReadService.findUserByParam(phone, password);
         if (user==null){
-            return false;
+            return "";
         }
         SessionDto session = new SessionDto();
         session.setPhone(phone);
         session.setSessionId(request.getSession().getId());
-
         sessionUtil.putSession(session);
-        return true;
+        if (target!=null){
+            return target;
+        }else {
+            return "http://localhost:8080";
+        }
     }
 }

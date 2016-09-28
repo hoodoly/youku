@@ -37,12 +37,26 @@ public class JobinfoListener {
 
     @Subscribe
     public void onTest(JobinfoEvent event){
-        log.info("event invoke" + event.getJobinfo().getJobName());
+
+        TestTask testTask = new TestTask(event);
+        executorService.submit(testTask);
+        //log.info("event invoke" + event.getJobinfo().getJobName());
     }
 
     private class TestTask implements Runnable{
 
+        public TestTask(JobinfoEvent event){
+
+        }
+
         public void run() {
+            try {
+                Thread.currentThread().sleep(20000L);
+                log.info("event run");
+            }catch (Exception e){
+
+            }
+
         }
     }
 }

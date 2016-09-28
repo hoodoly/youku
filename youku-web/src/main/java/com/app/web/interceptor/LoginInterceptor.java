@@ -1,8 +1,10 @@
 package com.app.web.interceptor;
 
 import com.app.user.module.User;
+import com.app.user.service.UserReadService;
 import com.app.web.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,17 +19,20 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+    @Autowired
+    UserReadService userReadService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession();
-        User user = new User();
-        if (session.getAttribute("username")!=null) {
-            user.setUsername(session.getAttribute("username").toString());
+        if (session.getAttribute("userId")!=null) {
+            User user = userReadService.findUserById(Long.parseLong(session.getAttribute("userId").toString()));
+            user.setUsername("xhj");
+            UserUtils.setCurrentUser(user);
         }
-        user.setUsername("xhj");
-        UserUtils.setCurrentUser(user);
-        return super.preHandle(request, response, handler);
+
+        return true;
     }
 
     @Override

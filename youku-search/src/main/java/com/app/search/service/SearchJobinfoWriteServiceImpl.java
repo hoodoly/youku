@@ -5,12 +5,11 @@ import com.app.jobinfo.service.JobinfoReadService;
 import com.app.search.EsClient.EsClientFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.deletebyquery.DeleteByQueryResponse;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.collect.Maps;
-import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,19 +31,24 @@ public class SearchJobinfoWriteServiceImpl implements SearchJobinfoWriteService{
 
     //索引数据
     public boolean indicesJobInfo(){
-
-        Map<String, Object> param = Maps.newHashMap();
-        List<Jobinfo> jobinfos = jobinfoReadService.getJobinfosByParam(param);
-
-        //获取客户端
-        Client client = EsClientFactory.getTransportClient();
-        SearchResponse searchResponse = client.prepareSearch("lagou").setTypes("jobInfo").setSize(Integer.MAX_VALUE).execute().actionGet();
-        SearchHit hits[] = searchResponse.getHits().getHits();
-        for (SearchHit searchHit : hits){
-            DeleteResponse response = client.prepareDelete("lagou", "jobInfo", searchHit.getId()).execute().actionGet();
-        }
-
         try {
+            Map<String, Object> param = Maps.newHashMap();
+            List<Jobinfo> jobinfos = jobinfoReadService.getJobinfosByParam(param);
+
+            //获取客户端
+            Client client = EsClientFactory.getTransportClient();
+//            SearchResponse searchResponse = client.prepareSearch("lagou").setTypes("jobInfo").setSize(Integer.MAX_VALUE).execute().actionGet();
+//            SearchHit hits[] = searchResponse.getHits().getHits();
+//            for (SearchHit searchHit : hits){
+//                DeleteResponse response = client.prepareDelete("lagou", "jobInfo", searchHit.getId()).execute().actionGet();
+//            }
+
+            //删除类型下的所有数据
+            DeleteByQueryResponse response = client.prepareDeleteByQuery("lagou")
+                    .setQuery(QueryBuilders.termQuery("_type", "jobinfo"))
+                    .execute()
+                    .actionGet();
+
             for (Jobinfo jobinfo : jobinfos) {
                 ObjectMapper mapper = new ObjectMapper();
                 String jsonValue = mapper.writeValueAsString(jobinfo);

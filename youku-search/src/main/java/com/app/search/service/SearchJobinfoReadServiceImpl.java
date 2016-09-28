@@ -4,6 +4,7 @@ import com.app.jobinfo.module.Jobinfo;
 import com.app.search.EsClient.EsClientFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 
 @Service
+@Slf4j
 public class SearchJobinfoReadServiceImpl implements SearchJobinfoReadService{
 
     public List<Jobinfo> search(String keyWord){
@@ -47,7 +49,7 @@ public class SearchJobinfoReadServiceImpl implements SearchJobinfoReadService{
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();
+            log.error(e.getLocalizedMessage());
         }
         return jobInfos;
     }

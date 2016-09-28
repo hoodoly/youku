@@ -30,10 +30,30 @@
         VALUES(#{userName}, #{passWord})
     </insert>
 
+    <update id="update" parameterType="User" >
+        UPDATE <include refid="table"/>
+        <set>
+            <if test="username!=null"> username=#{username}, </if>
+            <if test="password!=null"> password=#{password}, </if>
+            <if test="email!=null"> email=#{email}, </if>
+            <if test="phone!=null"> phone=#{phone}, </if>
+            <if test="type!=null"> type=#{type} </if>
+        </set>
+    </update>
+
     <select id="load" parameterType="long" resultMap="UserMap" >
         SELECT <include refid="columns" />
         FROM <include refid="table" />
         WHERE id = #{id} LIMIT 1
+    </select>
+
+    <select id="loads" parameterType="list" resultMap="UserMap">
+        SELECT <include refid="columns" />
+        FROM <include refid="table"/>
+        WHERE id IN
+        <foreach collection="list" item="id" separator="," open="(" close=")" >
+            #{id}
+        </foreach>
     </select>
 
     <select id="queryByParams" parameterType="map" resultMap="UserMap">

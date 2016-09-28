@@ -37,8 +37,8 @@ public class UserReadServiceImpl implements UserReadService {
         return user;
     }
 
-    public List<User> findUsersByIds() {
-        return null;
+    public List<User> loads(List<Long> ids) {
+        return userDao.loads(ids);
     }
 
 
