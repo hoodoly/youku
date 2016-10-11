@@ -11,6 +11,6 @@
         <typeAlias alias="JobInfo" type="com.app.jobinfo.module.Jobinfo"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/jobinfoMapper.xml" />
+        <mapper resource="mapper/jobInfoMapper.xml" />
     </mappers>
 </configuration>
